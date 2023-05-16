@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<time.h>
+#include <string.h>
 
-void double_num(char *c)
+void double_num(char* c)
 {
     FILE* fp = fopen (c, "r");
 
-    char line[20] = "";
+    char line[100];
 
     while( fgets(line, sizeof(line), fp))
     {
