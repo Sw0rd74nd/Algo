@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
     
     handle = l1;
 
-    printf("\n reverse order========== \n");
+    printf("\n==========reverse order========== \n");
 
     while(handle != NULL)
     { 
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 
     handle =l2;
 
-    printf("\n =========original order========== \n");
+    printf("\n==========original order========== \n");
     
     while(handle != NULL)
     { 
