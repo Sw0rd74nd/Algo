@@ -12,11 +12,11 @@ long long GetUSecTime()
    return (long long)cpuTime * 1000000 / CLOCKS_PER_SEC;
 }
 
-void swap(int *x, int *y)
+void swap(int *u, int *v)
 {
-   int temp = *x;
-   *x = *y;
-   *y = temp;
+   int temp = *u;
+   *u = *v;
+   *v = temp;
 }
 
 void bubbleSort(int *array, int n)
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
    char line[MAXLINE];
    int count = 0;
    int *list;
-   long long beginTime, endTime, msTime, uTime;
+   long long beginTime, endTime, msTime;
 
    list = malloc(100000 * sizeof(int));
 
@@ -75,19 +75,32 @@ int main(int argc, char *argv[])
    beginTime = GetUSecTime();
    bubbleSort(list, count);
    endTime = GetUSecTime();
-   uTime = endTime - beginTime;
    msTime = (endTime - beginTime) / 1000;
 
-   for (int i = 0; i < count; i++)
+   if (count <= 20)
    {
-      printf("%d \n", list[i]);
+      for (int i = 0; i < count; i++)
+      {
+         printf("%d \n", list[i]);
+      }
+   }
+   else
+   {
+      for (int i = 0; i < 5; i++)
+      {
+         printf("%d \n", list[i]);
+      }
+
+      printf("...\n");
+
+      for (int i = count - 5; i < count; i++)
+      {
+         printf("%d \n", list[i]);
+      }
    }
 
    printf("\n------BubbleSort------\n");
    printf("required time: %lld mssec \n", msTime);
-   printf("required time: %lld usec \n", uTime);
-   printf("begin time: %lld usec \n", beginTime);
-   printf("end time: %lld usec \n", endTime);
 
    free(list);
 

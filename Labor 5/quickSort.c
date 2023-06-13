@@ -55,11 +55,10 @@ int main(int argc, char *argv[])
    FILE *in = stdin;
    char line[MAXLINE];
    int count = 0;
-   int *list, *list2;
-   long long beginTime, endTime, msTime, uTime;
+   int *list;
+   long long beginTime, endTime, msTime;
 
    list = malloc(100000 * sizeof(int));
-   list2 = malloc(100000 * sizeof(int));
 
    if (argc > 2)
    {
@@ -84,21 +83,34 @@ int main(int argc, char *argv[])
    list = realloc(list, count * sizeof(int));
 
    beginTime = GetUSecTime();
-   quickSort(list, 0, count);
+   quickSort(list, 0, count - 1);
    endTime = GetUSecTime();
-   uTime = endTime - beginTime;
    msTime = (endTime - beginTime) / 1000;
 
-   for (int i = 0; i < count; i++)
+   if (count <= 20)
    {
-      printf("%d \n", list[i]);
+      for (int i = 0; i < count; i++)
+      {
+         printf("%d \n", list[i]);
+      }
+   }
+   else
+   {
+      for (int i = 0; i < 5; i++)
+      {
+         printf("%d \n", list[i]);
+      }
+
+      printf("...\n");
+
+      for (int i = count - 5; i < count; i++)
+      {
+         printf("%d \n", list[i]);
+      }
    }
 
    printf("\n------QuickSort------\n");
    printf("required time: %lld mssec \n", msTime);
-   printf("required time: %lld usec \n", uTime);
-   printf("begin time: %lld usec \n", beginTime);
-   printf("end time: %lld usec \n", endTime);
 
    free(list);
 
