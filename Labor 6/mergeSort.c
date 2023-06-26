@@ -14,51 +14,60 @@ long long GetUSecTime()
 
 void merge(int arr[], int l, int m, int r)
 {
-   int i, j, k;
-   int n1 = m - l + 1;
-   int n2 = r - m;
+   int i;
+   int j;
+   int k;
+   int x = m - l + 1;
+   int y = r - m;
 
-   int *L = (int *)malloc(n1 * sizeof(int));
-   int *R = (int *)malloc(n2 * sizeof(int));
+   int *Left = (int *)malloc(x * sizeof(int));
+   int *Right = (int *)malloc(y * sizeof(int));
 
-   for (i = 0; i < n1; i++)
-      L[i] = arr[l + i];
-   for (j = 0; j < n2; j++)
-      R[j] = arr[m + 1 + j];
+   for (i = 0; i < x; i++)
+   {
+      Left[i] = arr[l + i];
+   }
+
+   for (j = 0; j < y; j++)
+   {
+      Right[j] = arr[m + 1 + j];
+   }
 
    i = 0;
    j = 0;
    k = l;
-   while (i < n1 && j < n2)
+
+   while (i < x && j < y)
    {
-      if (L[i] <= R[j])
+      if (Left[i] <= Right[j])
       {
-         arr[k] = L[i];
+         arr[k] = Left[i];
          i++;
       }
       else
       {
-         arr[k] = R[j];
+         arr[k] = Right[j];
          j++;
       }
       k++;
    }
 
-   while (i < n1)
+   while (i < x)
    {
-      arr[k] = L[i];
+      arr[k] = Left[i];
       i++;
       k++;
    }
 
-   while (j < n2)
+   while (j < y)
    {
-      arr[k] = R[j];
+      arr[k] = Right[j];
       j++;
       k++;
    }
-   free(L);
-   free(R);
+
+   free(Left);
+   free(Right);
 }
 
 void mergeSort(int arr[], int l, int r)
@@ -133,7 +142,7 @@ int main(int argc, char *argv[])
       }
    }
 
-   printf("\n------BubbleSort------\n");
+   printf("\n------MergeSort------\n");
    printf("required time: %lld mssec \n", msTime);
 
    free(list);
