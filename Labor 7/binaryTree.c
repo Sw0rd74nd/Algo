@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define DATASIZE 50
+#define DATASIZE 32
 
 typedef struct node
 {
